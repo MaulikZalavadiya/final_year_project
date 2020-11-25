@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Facial Expression Recognition</title>
+
+    <!-- vendor css -->
+    <link href="../../static/adminResources/css/font-awesome.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/ionicons.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/toggles-full.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/rickshaw.min.css" rel="stylesheet">
+
+    <!-- Amanda CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/index.css">
+
+    <script src="../../static/adminResources/js/highcharts.js"></script>
+    <script src="../../static/adminResources/js/exporting.js"></script>
+
+
+    <script type="text/javascript">
+
+        function loadDetection() {
+
+            var index_User_LoginId = document.getElementById("index_User_LoginId");
+
+            var index_DetectionId = document.getElementById("index_DetectionId");
+
+            index_DetectionId.innerHTML = "";
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+
+                if (ajax.readyState == 4) {
+                    var json = JSON.parse(ajax.responseText);
+
+                    var option1 = document.createElement("option");
+
+                    option1.value = "Select Detection";
+                    option1.text = "Select Detection";
+
+                    index_DetectionId.options.add(option1);
+
+                    for (var i = 0; i < json.length; i++) {
+
+                        var option = document.createElement("option");
+
+                        option.value = json[i]['detectionId'];
+                        option.text = json[i]['detectionFileName'];
+
+                        index_DetectionId.options.add(option)
+                    }
+                }
+            };
+            ajax.open("get", "/admin/ajaxLoadDetection?index_User_LoginId=" + index_User_LoginId.value, true);
+
+            ajax.send()
+        }
+
+        function loadGraph() {
+
+            var register_LoginId = document.getElementById("index_DetectionId");
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+
+                if (ajax.readyState == 4) {
+
+                    var jsn = JSON.parse(ajax.responseText);
+
+                    alert(jsn);
+                    if (jsn['responseKey'] != 'Error') {
+                        var xdata = [];
+                        var ydata = [];
+
+                        for (var key in jsn['responseKey']) {
+
+                            var key_value = jsn['responseKey'][key];
+
+                            xdata.push(key);
+                            ydata.push(key_value);
+
+                        }
+                        Highcharts.chart({
+                            chart: {
+                                renderTo: "container",
+
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Face Expression Analysis'
+                            },
+                            subtitle: {
+                                text: 'Source: FacialExpressionRecognition'
+                            },
+                            xAxis: {
+                                categories: xdata,
+                                crosshair: true
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Count'
+                                }
+                            },
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0
+                                }
+                            },
+                            series: [{
+                                name: 'Face Expressions',
+                                data: ydata
+
+                            }]
+                        });
+                    }
+                }
+            };
+            ajax.open("get", "/admin/ajaxGetGraphData?index_DetectionId=" + index_DetectionId.value, true);
+
+            ajax.send()
+        }
+
+    </script>
+</head>
+
+<body>
+
+
+{% include 'admin/header.html' %}
+<!-- am-header -->
+
+
+{% include'admin/menu.html' %}
+
+<!-- am-sideleft -->
+
+<div class="am-mainpanel">
+    <div class="am-pagetitle">
+        <h5 class="am-title">Dashboard</h5>
+    </div><!-- am-pagetitle -->
+
+    <div class="am-pagebody">
+        <div class="row row-sm">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="wd-100p ht-200" style="background-color: #2d3a50;"></div>
+                    <div class="overlay-body pd-x-20 pd-t-50">
+                        <div class="d-flex justify-content-between" style="color: #FB9337;">
+                            <div>
+                                <h1 class="mg-b-5 tx-lato">{{totalUsers}}</h1>
+                                <p class="tx-20 mg-b-0">Number of Users</p>
+                            </div>
+                            <i class="fa fa-users" style="font-size: 85px;"></i>
+                        </div>
+                    </div>
+                </div><!-- card -->
+            </div><!-- col-4 -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="wd-100p ht-200" style="background-color: #2d3a50;"></div>
+                    <div class="overlay-body pd-x-25 pd-t-50">
+                        <div class="d-flex justify-content-between" style="color: #FB9337;">
+                            <div>
+                                <h1 class="mg-b-5 tx-lato">{{totalFeedbackCount}}</h1>
+                                <p class="tx-20 mg-b-0">Total Feedbacks</p>
+                            </div>
+                            <i class="fa fa-thumbs-up" style="font-size: 85px;"></i>
+                        </div>
+                    </div>
+                </div><!-- card -->
+            </div><!-- col-4 -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="wd-100p ht-200" style="background-color: #2d3a50;"></div>
+                    <div class="overlay-body pd-x-25 pd-t-50">
+                        <div class="d-flex justify-content-between" style="color: #FB9337;">
+                            <div>
+                                <h1 class="mg-b-5 tx-lato">{{pendingComplainCount}}</h1>
+                                <p class="tx-20 mg-b-0">Pending Complaints</p>
+                            </div>
+                            <i class="fa fa-comments" style="font-size: 85px;"></i>
+                        </div>
+                    </div>
+                </div><!-- card -->
+            </div><!-- col-4 -->
+        </div><!-- row -->
+
+        <div class="row mg-t-20">
+            <div class="col-lg">
+                <select name="index_User_LoginId" id="index_User_LoginId" onchange="loadDetection()"
+                        class="form-control">
+                    <option>Select User</option>
+                    {% for i in userVOList %}
+                    <option value="{{ i[1]['register_LoginId'] }}">{{ i[1]['registerFirstName'] }} {{
+                        i[1]['registerLastName'] }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div><!-- col -->
+        </div><!-- row -->
+
+        <div class="row mg-t-20">
+            <div class="col-lg">
+                <select name="index_DetectionId" id="index_DetectionId" onchange="loadGraph()" class="form-control">
+                    <option>Select Detection</option>
+                </select>
+            </div><!-- col -->
+        </div>
+
+        <br>
+
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+    </div><!-- am-pagebody -->
+
+</div><!-- am-mainpanel -->
+
+<script src="../../static/adminResources/js/jquery.js"></script>
+<script src="../../static/adminResources/js/popper.js"></script>
+<script src="../../static/adminResources/js/bootstrap.js"></script>
+<script src="../../static/adminResources/js/perfect-scrollbar.jquery.js"></script>
+<script src="../../static/adminResources/js/toggles.min.js"></script>
+<script src="../../static/adminResources/js/d3.js"></script>
+<script src="../../static/adminResources/js/rickshaw.min.js"></script>
+<script src="../../static/adminResources/js/gmaps.js"></script>
+<script src="../../static/adminResources/js/jquery.flot.js"></script>
+<script src="../../static/adminResources/js/jquery.flot.pie.js"></script>
+<script src="../../static/adminResources/js/jquery.flot.resize.js"></script>
+<script src="../../static/adminResources/js/jquery.flot.spline.js"></script>
+
+<script src="../../static/adminResources/js/amanda.js"></script>
+<script src="../../static/adminResources/js/ResizeSensor.js"></script>
+<script src="../../static/adminResources/js/dashboard.js"></script>
+</body>
+</html>

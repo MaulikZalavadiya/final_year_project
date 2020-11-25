@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@themepixels">
+    <meta name="twitter:creator" content="@themepixels">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Amanda">
+    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="twitter:image" content="http://themepixels.me/amanda/img/amanda-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://themepixels.me/amanda">
+    <meta property="og:title" content="Bracket">
+    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+
+    <meta property="og:image" content="http://themepixels.me/amanda/img/amanda-social.png">
+    <meta property="og:image:secure_url" content="http://themepixels.me/amanda/img/amanda-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="author" content="ThemePixels">
+
+
+    <title>Facial Expression Recognition</title>
+
+    <!-- vendor css -->
+    <link href="../../static/adminResources/css/font-awesome.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/ionicons.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/toggles-full.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/github.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/select2.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/index.css">
+</head>
+
+<body>
+
+
+{% include 'admin/header.html' %}
+
+<!-- am-header -->
+
+{% include'admin/menu.html' %}
+<!-- am-sideleft -->
+
+<div class="am-pagetitle">
+    <h5 class="am-title">Manage Detection</h5>
+
+</div><!-- am-pagetitle -->
+
+<div class="am-mainpanel">
+    <div class="am-pagebody">
+
+        <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title mg-sm-b-30">View Detection</h6>
+
+            <div class="table-wrapper">
+                <table id="datatable1" class="table display responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th align="center">Username</th>
+                        <th align="center">Detection Video Name</th>
+                        <th align="center">Detection Video Path</th>
+                        <th align="center">Detection</th>
+                        <th align="center">Detection Date</th>
+                        <th align="center">Detection Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in detectionVOList %}
+                    <tr>
+                        <td>{{ row[1]['loginUsername'] }}</td>
+                        <td>{{ row[0]['detectionFileName'] }}</td>
+                        <td>{{ row[0]['detectionFilePath'] }}</td>
+                        <td><a href="{{ row[0]['detectionFilePath'] }}{{ row[0]['detectionFileName'] }}"
+                                              target="_blank">
+                            <i class="fa fa-eye" style="font-size: 20px"></i>
+                        </a>
+                        </td>
+                        <td>{{ row[0]['detectionUploadDate'] }}</td>
+                        <td>{{ row[0]['detectionUploadTime'] }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div><!-- table-wrapper -->
+        </div><!-- card -->
+
+        <!--<p class="tx-11 tx-uppercase tx-spacing-2 mg-t-40 mg-b-10 tx-gray-600">Javascript Code</p>-->
+        <!--<pre class="mg-b-0"><code class="javascript pd-20">-->
+        <!--$('#userTable2').userTable({-->
+        <!--bLengthChange: false,-->
+        <!--searching: false,-->
+        <!--responsive: true-->
+        <!--});-->
+        <!--</code></pre>-->
+
+    </div><!-- am-pagebody -->
+    {% include'admin/footer.html' %}
+    <!-- am-footer -->
+</div><!-- am-mainpanel -->
+
+<script src="../../static/adminResources/js/jquery.js"></script>
+<script src="../../static/adminResources/js/popper.js"></script>
+<script src="../../static/adminResources/js/bootstrap.js"></script>
+<script src="../../static/adminResources/js/perfect-scrollbar.jquery.js"></script>
+<script src="../../static/adminResources/js/toggles.min.js"></script>
+<script src="../../static/adminResources/js/highlight.pack.js"></script>
+<script src="../../static/adminResources/js/jquery.dataTables.js"></script>
+<script src="../../static/adminResources/js/dataTables.responsive.js"></script>
+<script src="../../static/adminResources/js/select2.min.js"></script>
+
+<script src="../../static/adminResources/js/amanda.js"></script>
+<script>
+    $(function () {
+        'use strict';
+
+        $('#datatable1').dataTable({
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Search...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            }
+        });
+        $('#datatable2').DataTable({
+            bLengthChange: false,
+            searching: false,
+            responsive: true
+        });
+
+//        Select2
+        $('.dataTables_length select').select2({minimumResultsForSearch: Infinity});
+
+    });
+</script>
+</body>
+</html>

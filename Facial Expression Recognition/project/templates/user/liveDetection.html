@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@themepixels">
+    <meta name="twitter:creator" content="@themepixels">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Amanda">
+    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="twitter:image" content="http://themepixels.me/amanda/img/amanda-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://themepixels.me/amanda">
+    <meta property="og:title" content="Bracket">
+    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+
+    <meta property="og:image" content="http://themepixels.me/amanda/img/amanda-social.png">
+    <meta property="og:image:secure_url" content="http://themepixels.me/amanda/img/amanda-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="author" content="ThemePixels">
+
+
+    <title>Facial Expression Recognition</title>
+
+    <!-- vendor css -->
+    <link href="../../static/adminResources/css/font-awesome.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/ionicons.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/toggles-full.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/github.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/select2.min.css" rel="stylesheet">
+
+    <!-- Amanda CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/index.css">
+</head>
+
+<body>
+
+
+{% include'user/header.html' %}
+
+<!-- am-header -->
+
+
+{% include'user/menu.html' %}
+<!-- am-sideleft -->
+
+<div class="am-pagetitle">
+    <h5 class="am-title">Live Detection</h5>
+
+</div><!-- am-pagetitle -->
+
+<div class="am-mainpanel">
+    <div class="am-pagebody">
+        <!--<form action="/admin/insertCamera" enctype="multipart/form-data" method="post">-->
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card pd-20 pd-sm-40">
+
+                            <h6 class="card-body-title mg-sm-b-30">Live Detection</h6>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-sm-4 form-control-label">Action : <span
+                                            class="tx-danger"></span></label>
+                                </div><!-- row -->
+
+
+
+                                <div class="form-layout-footer mg-t-30">
+
+                                    <a href="/user/live"><button class="btn btn-info mg-r-5" type="submit">Live WebCam</button></a>
+                                </div><!-- form-layout-footer -->
+                            </div>
+                        </div>
+                        <!-- card -->
+                    </div><!-- col-6 -->
+
+                </div>
+            </div>
+        <!--</form>-->
+    </div><!-- card -->
+
+
+    {% include'user/footer.html' %}
+    <!-- am-footer -->
+</div><!-- am-mainpanel -->
+
+<script src="../../static/adminResources/js/jquery.js"></script>
+<script src="../../static/adminResources/js/popper.js"></script>
+<script src="../../static/adminResources/js/bootstrap.js"></script>
+<script src="../../static/adminResources/js/perfect-scrollbar.jquery.js"></script>
+<script src="../../static/adminResources/js/toggles.min.js"></script>
+<script src="../../static/adminResources/js/highlight.pack.js"></script>
+<script src="../../static/adminResources/js/select2.min.js"></script>
+<script src="../../static/adminResources/js/parsley.js"></script>
+
+<script src="../../static/adminResources/js/amanda.js"></script>
+<script>
+    $(function () {
+        'use strict';
+        $('.select2').select2({
+            minimumResultsForSearch: Infinity
+        });
+
+        $('#selectForm').parsley();
+    })
+</script>
+</div>
+</body>
+</html>

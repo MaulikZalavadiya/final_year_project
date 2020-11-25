@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title></title>
+
+    <!-- vendor css -->
+    <link href="../../static/adminResources/css/font-awesome.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/ionicons.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/toggles-full.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/github.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/select2.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../static/adminResources/css/bootstrap.min.css">
+
+    <!-- Amanda CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/index.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/rating.css">
+</head>
+
+<body>
+
+
+{% include 'user/header.html' %}
+
+
+<!-- am-header -->
+
+
+{% include 'user/menu.html' %}
+
+
+<!-- am-sideleft -->
+
+<div class="am-pagetitle">
+    <h5 class="am-title">Plans</h5>
+
+</div><!-- am-pagetitle -->
+
+<div class="am-mainpanel">
+    <div class="am-pagebody">
+        <!--<form action="/user/viewPackage" method="post">-->
+        <div class="row row-sm mg-t-20">
+            {% for i in packageVOList %}
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+
+                <div class="card card-pricing text-center px-3 mb-4">
+                    <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">{{ i['packageName'] }}</span>
+                    <div class="bg-transparent card-header pt-4 border-0">
+                        <h1 class="h1 font-weight-normal text-primary text-center mb-0" data-pricing-value="15">$<span
+                                class="price">{{ i['packagePrice'] }}</span><span class="h6 text-muted ml-2">/ per {{ i['packageDuration'] }}</span>
+                        </h1>
+                    </div>
+
+                    <div class="card-body pt-0">
+                        <!--<ul class="list-unstyled mb-4" style="line-height: 3">-->
+                            <!--<li>Up to 5 users</li>-->
+                            <!--<li>Basic support on Github</li>-->
+                            <!--<li>Monthly updates</li>-->
+                            <!--<li>Free cancelation</li>-->
+                        <!--</ul>-->
+                        <a href="/user/payment">
+                            <button type="submit" class="btn btn-outline-secondary mb-3">Order now</button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>{% endfor %}
+        </div>
+        <!--</form>-->
+    </div><!-- am-pagebody -->
+
+
+    {% include 'user/footer.html' %}
+
+
+    <!-- am-footer -->
+</div><!-- am-mainpanel -->
+
+<script src="../../static/adminResources/js/jquery.js"></script>
+<script src="../../static/adminResources/js/popper.js"></script>
+<script src="../../static/adminResources/js/bootstrap.js"></script>
+<script src="../../static/adminResources/js/perfect-scrollbar.jquery.js"></script>
+<script src="../../static/adminResources/js/toggles.min.js"></script>
+<script src="../../static/adminResources/js/highlight.pack.js"></script>
+<script src="../../static/adminResources/js/select2.min.js"></script>
+<script src="../../static/adminResources/js/parsley.js"></script>
+
+<script src="../../static/adminResources/js/amanda.js"></script>
+<script src="../../static/adminResources/js/bootstrap.min.js"></script>
+<script src="../../static/adminResources/js/jquery.min.js"></script>
+<script>
+    $(function () {
+        'use strict';
+        $('.select2').select2({
+            minimumResultsForSearch: Infinity
+        });
+
+        $('#selectForm').parsley();
+    })
+</script>
+</body>
+</html>

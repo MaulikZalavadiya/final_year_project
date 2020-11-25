@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Facial Expression Recognition</title>
+
+    <!-- vendor css -->
+    <link href="../../static/adminResources/css/font-awesome.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/ionicons.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/toggles-full.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/rickshaw.min.css" rel="stylesheet">
+
+    <!-- Amanda CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/index.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/about.css">
+</head>
+
+<body>
+
+
+{% include 'user/header.html' %}
+<!-- am-header -->
+
+
+{% include'user/menu.html' %}
+
+<!-- am-sideleft -->
+
+<div class="am-mainpanel">
+    <div class="am-pagetitle">
+        <h5 class="am-title">Home</h5>
+    </div><!-- am-pagetitle -->
+    <div class="am-pagebody" style="padding-right: 0;padding-left: 0;">
+
+        <!-- About Section -->
+        <div class="w3-row w3-padding-64" id="about">
+            <div class="w3-col m6 w3-padding-large w3-hide-small">
+                <img style="padding-top: 90px" src="../../static/adminResources/image/img.png"
+                     class="w3-round w3-image w3-opacity-min"
+                     alt="Table Setting" width="600" height="750">
+            </div>
+
+            <div class="w3-col m6 w3-padding-large">
+                <h1 class="w3-center">About Project</h1><br>
+                <p class="w3-large">Facial expression recognition is the task of classifying the expressions on face
+                    images into various categories such as anger, fear, surprise, sadness, happiness and so on.
+                </p>
+                <p class="w3-large w3-text-grey w3-hide-medium">Automatic facial expression analysis is an interesting
+                    and challenging problem, and impacts important applications in many areas such as human–computer
+                    interaction and data-driven animation. In this paper, we
+                    empirically evaluate facial representation based on statistical local features, Local Binary
+                    Patterns, for person-independent facial expression recognition. Different machine learning methods
+                    are systematically examined on several databases. Extensive experiments illustrate that LBP features
+                    are effective and efficient for facial expression recognition.</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    {% include'user/footer.html' %}
+
+    <!-- am-footer -->
+</div><!-- am-mainpanel -->
+
+<script src="../../static/adminResources/js/jquery.js"></script>
+<script src="../../static/adminResources/js/popper.js"></script>
+<script src="../../static/adminResources/js/bootstrap.js"></script>
+<script src="../../static/adminResources/js/perfect-scrollbar.jquery.js"></script>
+<script src="../../static/adminResources/js/toggles.min.js"></script>
+<script src="../../static/adminResources/js/d3.js"></script>
+<script src="../../static/adminResources/js/rickshaw.min.js"></script>
+<script src="../../static/adminResources/js/gmaps.js"></script>
+<script src="../../static/adminResources/js/jquery.flot.js"></script>
+<script src="../../static/adminResources/js/jquery.flot.pie.js"></script>
+<script src="../../static/adminResources/js/jquery.flot.resize.js"></script>
+<script src="../../static/adminResources/js/jquery.flot.spline.js"></script>
+
+<script src="../../static/adminResources/js/amanda.js"></script>
+<script src="../../static/adminResources/js/ResizeSensor.js"></script>
+<script src="../../static/adminResources/js/dashboard.js"></script>
+</body>
+</html>

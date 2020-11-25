@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title></title>
+
+    <!-- vendor css -->
+    <link href="../../static/adminResources/css/font-awesome.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/ionicons.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/toggles-full.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/github.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/select2.min.css" rel="stylesheet">
+
+    <!-- Amanda CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/index.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/rating.css">
+</head>
+
+<body>
+
+
+{% include 'user/header.html' %}
+
+
+<!-- am-header -->
+
+
+{% include 'user/menu.html' %}
+
+
+<!-- am-sideleft -->
+
+<div class="am-pagetitle">
+    <h5 class="am-title">FEEDBACK</h5>
+
+</div><!-- am-pagetitle -->
+
+<div class="am-mainpanel">
+    <div class="am-pagebody">
+
+        <div class="row row-sm mg-t-20">
+            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card pd-20 pd-sm-40">
+                    <h6 class="card-body-title">Post Feedback</h6>
+
+                    <form action="/user/insertFeedback" method="post" enctype="multipart/form-data">
+
+                        <div class="row mg-t-20">
+                            <div class="col-lg">
+                                <div class="rate">
+
+                                    <input type="radio" id="star5" name="feedbackRating" value="5"/><label for="star5"
+                                                                                                           title="text">5
+                                    stars</label>
+                                    <input type="radio" id="star4" name="feedbackRating" value="4"/><label for="star4"
+                                                                                                           title="text">4
+                                    stars</label>
+                                    <input type="radio" id="star3" name="feedbackRating" value="3"/><label for="star3"
+                                                                                                           title="text">3
+                                    stars</label>
+                                    <input type="radio" id="star2" name="feedbackRating" value="2"/><label for="star2"
+                                                                                                           title="text">2
+                                    stars</label>
+                                    <input type="radio" id="star1" name="feedbackRating" value="1"/><label for="star1"
+                                                                                                           title="text">1
+                                    star</label>
+                                </div>
+                            </div><!-- col -->
+                        </div><!-- row -->
+
+                        <div class="row">
+                            <div class="col-lg">
+                                <input class="form-control" type="text" name="feedbackSubject"
+                                       placeholder="Enter Feedback Subject">
+                            </div><!-- col -->
+                        </div><!-- row -->
+
+                        <div class="row mg-t-20">
+                            <div class="col-lg">
+                                <textarea rows="3" name="feedbackDescription" class="form-control"
+                                          placeholder="Enter Feedback Description"></textarea>
+                            </div><!-- col -->
+                        </div><!-- row -->
+
+
+                        <div class="row mg-t-20">
+                            <div class="col-lg">
+                                <button type="submit" class="btn btn-info">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-sm mg-t-20">
+            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card pd-20 pd-sm-40">
+                    <h6 class="card-body-title">Feedbacks</h6>
+                    <div class="mail-list bg-white">
+
+                        {% for row in FeedbackVOList %}
+
+                        <div class="mail-item d-flex pd-y-10 pd-x-20">
+                            <div class="pd-t-5"><img src="../../static/adminResources/image/img3.jpg"
+                                                     class="wd-48 rounded-circle" alt=""></div>
+                            <div class="mg-l-20" style="width: 100%">
+                                <div class="d-flex justify-content-between mg-b-2">
+                                    <div class="tx-14">
+                                        {% for i in range(row[0]['feedbackRating']) %}
+                                        <i class="icon ion-star"></i>
+                                        {% endfor %}
+                                    </div>
+                                    <span class="tx-12">{{ row[0]['feedbackDate'] }}</span>
+
+
+                                </div><!-- d-flex -->
+                                <h6 class="tx-14">{{row[1]['loginUsername']}}</h6>
+                                <p class="tx-13 mg-b-10">
+                                    {{row[0]['feedbackDescription']}}
+                                </p>
+                            </div>
+                        </div><!-- mail-item -->
+
+                        {% endfor %}
+
+                    </div><!-- mail-list -->
+                </div>
+            </div><!-- col-6 -->
+        </div>
+
+    </div><!-- am-pagebody -->
+
+
+    {% include 'user/footer.html' %}
+
+
+    <!-- am-footer -->
+</div><!-- am-mainpanel -->
+
+<script src="../../static/adminResources/js/jquery.js"></script>
+<script src="../../static/adminResources/js/popper.js"></script>
+<script src="../../static/adminResources/js/bootstrap.js"></script>
+<script src="../../static/adminResources/js/perfect-scrollbar.jquery.js"></script>
+<script src="../../static/adminResources/js/toggles.min.js"></script>
+<script src="../../static/adminResources/js/highlight.pack.js"></script>
+<script src="../../static/adminResources/js/select2.min.js"></script>
+<script src="../../static/adminResources/js/parsley.js"></script>
+
+<script src="../../static/adminResources/js/amanda.js"></script>
+<script>
+    $(function () {
+        'use strict';
+        $('.select2').select2({
+            minimumResultsForSearch: Infinity
+        });
+
+        $('#selectForm').parsley();
+    })
+</script>
+</body>
+</html>
